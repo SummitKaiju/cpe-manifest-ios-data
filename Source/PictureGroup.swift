@@ -71,7 +71,7 @@ open class Picture {
 
         // Caption
         captions = try indexer[Elements.Caption].all.flatMap({
-            if let caption: String = try $0.value(), caption.characters.count > 0 {
+            if let caption: String = try $0.value(), caption.count > 0 {
                 return caption
             }
 

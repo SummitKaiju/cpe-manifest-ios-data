@@ -129,7 +129,7 @@ public class TheTakeProduct: ProductItem {
             hasExactMatchData = true
         }
 
-        if let purchaseLink = data[Constants.Keys.PurchaseLink] as? String, purchaseLink.characters.count > 0 {
+        if let purchaseLink = data[Constants.Keys.PurchaseLink] as? String, purchaseLink.count > 0 {
             externalURL = URL(string: purchaseLink)
         } else {
             externalURL = URL(string: Constants.ProductURLPrefix + id)

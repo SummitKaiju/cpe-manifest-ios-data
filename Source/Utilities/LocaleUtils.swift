@@ -12,7 +12,7 @@ extension Locale {
     }
 
     static var deviceLanguageBackup: String {
-        return String(deviceLanguage[deviceLanguage.startIndex ..< deviceLanguage.characters.index(deviceLanguage.startIndex, offsetBy: 2)])
+        return String(deviceLanguage[deviceLanguage.startIndex ..< deviceLanguage.index(deviceLanguage.startIndex, offsetBy: 2)])
     }
 
 }
