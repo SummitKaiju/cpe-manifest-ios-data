@@ -128,7 +128,7 @@ open class AppDataItem: Trackable {
             throw ManifestError.missingRequiredChildElement(name: Elements.NVPair, element: indexer.element)
         }
 
-        for indexer in indexer[Elements.NVPair] {
+        for indexer in indexer[Elements.NVPair].all {
             // Name
             guard let name: String = indexer.value(ofAttribute: Attributes.Name) else {
                 throw ManifestError.missingRequiredAttribute(Attributes.Name, element: indexer.element)

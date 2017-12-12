@@ -72,7 +72,7 @@ open class TimedEventSequence {
             throw ManifestError.missingRequiredChildElement(name: Elements.TimedEvent, element: indexer.element)
         }
 
-        timedEvents = try indexer[Elements.TimedEvent].flatMap({ try TimedEvent(indexer: $0) })
+        timedEvents = try indexer[Elements.TimedEvent].all.flatMap({ try TimedEvent(indexer: $0) })
     }
 
 }

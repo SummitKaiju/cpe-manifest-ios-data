@@ -55,7 +55,7 @@ open class TextObject {
 
         textStrings = [Int: String?]()
         var i = 1
-        for indexer in indexer[Elements.TextString] {
+        for indexer in indexer[Elements.TextString].all {
             textStrings[indexer.value(ofAttribute: Attributes.Index) ?? i] = try indexer.value()
             i += 1
         }

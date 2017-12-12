@@ -195,7 +195,7 @@ open class Person: Equatable, Trackable {
             throw ManifestError.missingRequiredChildElement(name: Elements.Job, element: indexer.element)
         }
 
-        jobs = try indexer[Elements.Job].flatMap({ try PersonJob(indexer: $0) })
+        jobs = try indexer[Elements.Job].all.flatMap({ try PersonJob(indexer: $0) })
 
         // Name
         guard let name: String = try indexer[Elements.Name][Elements.DisplayName].value() else {

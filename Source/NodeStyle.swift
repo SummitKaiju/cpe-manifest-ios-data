@@ -260,7 +260,7 @@ open class NodeStyle {
 
             // OverlayArea
             if backgroundIndexer.hasElement(Elements.OverlayArea) {
-                for overlayIndexer in backgroundIndexer[Elements.OverlayArea] {
+                for overlayIndexer in backgroundIndexer[Elements.OverlayArea].all {
                     // Type
                     guard let type: String = overlayIndexer.value(ofAttribute: Attributes.Tag) else {
                         throw ManifestError.missingRequiredAttribute(Attributes.Tag, element: overlayIndexer.element)

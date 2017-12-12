@@ -51,7 +51,7 @@ public class ContainerReference {
         // ContainerLocation
         if indexer.hasElement(Elements.ContainerLocation) {
             var locations = [URL?](repeating: nil, count: indexer[Elements.ContainerLocation].all.count)
-            for indexer in indexer[Elements.ContainerLocation] {
+            for indexer in indexer[Elements.ContainerLocation].all {
                 if let urlString: String = try indexer.value(), let url = URL(string: urlString) {
                     var index = 0
                     if let priority: Int = indexer.value(ofAttribute: Attributes.Priority) {

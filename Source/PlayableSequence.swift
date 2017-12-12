@@ -39,7 +39,7 @@ open class PlayableSequence {
             throw ManifestError.missingRequiredChildElement(name: Elements.Clip, element: indexer.element)
         }
 
-        presentationIDs = try indexer[Elements.Clip].flatMap({ try $0[Elements.PresentationID].value() })
+        presentationIDs = try indexer[Elements.Clip].all.flatMap({ try $0[Elements.PresentationID].value() })
     }
 
 }

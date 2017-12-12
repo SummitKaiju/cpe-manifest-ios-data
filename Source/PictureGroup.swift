@@ -70,8 +70,8 @@ open class Picture {
         thumbnailImageID = try indexer[Elements.ThumbnailImageID].value()
 
         // Caption
-        captions = try indexer[Elements.Caption].flatMap({
-            if let caption: String = try $0.value(), caption.characters.count > 0 {
+        captions = try indexer[Elements.Caption].all.flatMap({
+            if let caption: String = try $0.value(), caption.count > 0 {
                 return caption
             }
 
@@ -129,7 +129,7 @@ public class PictureGroup {
             throw ManifestError.missingRequiredChildElement(name: Elements.Picture, element: indexer.element)
         }
 
-        pictures = try indexer[Elements.Picture].flatMap({ try Picture(indexer: $0) })
+        pictures = try indexer[Elements.Picture].all.flatMap({ try Picture(indexer: $0) })
     }
 
     open func picture(atIndex index: Int) -> Picture? {

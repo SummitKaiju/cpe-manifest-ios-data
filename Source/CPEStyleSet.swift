@@ -53,7 +53,7 @@ open class CPEStyleSet {
         }
 
         nodeStyles = [String: NodeStyle]()
-        for indexer in indexer[Elements.NodeStyle] {
+        for indexer in indexer[Elements.NodeStyle].all {
             let nodeStyle = try NodeStyle(indexer: indexer)
             nodeStyles[nodeStyle.id] = nodeStyle
         }
@@ -64,13 +64,13 @@ open class CPEStyleSet {
         }
 
         themes = [String: Theme]()
-        for indexer in indexer[Elements.Theme] {
+        for indexer in indexer[Elements.Theme].all {
             let theme = try Theme(indexer: indexer)
             themes[theme.id] = theme
         }
 
         // ExperienceStyleMap (continued)
-        for indexer in indexer[Elements.ExperienceStyleMap] {
+        for indexer in indexer[Elements.ExperienceStyleMap].all {
             // ExperienceID
             guard let experienceID: String = try indexer[Elements.ExperienceID].value() else {
                 throw ManifestError.missingRequiredChildElement(name: Elements.ExperienceID, element: indexer.element)
@@ -81,7 +81,7 @@ open class CPEStyleSet {
                 throw ManifestError.missingRequiredChildElement(name: Elements.NodeStyleRef, element: indexer.element)
             }
 
-            for nodeStyleRefIndexer in indexer[Elements.NodeStyleRef] {
+            for nodeStyleRefIndexer in indexer[Elements.NodeStyleRef].all {
                 // NodeStyleID
                 guard let nodeStyleID: String = nodeStyleRefIndexer.value(ofAttribute: Attributes.NodeStyleID), let nodeStyle = nodeStyles[nodeStyleID] else {
                     throw ManifestError.missingRequiredAttribute(Attributes.NodeStyleID, element: nodeStyleRefIndexer.element)
@@ -97,7 +97,7 @@ open class CPEStyleSet {
 
                 // DeviceTarget
                 if nodeStyleRefIndexer.hasElement(Elements.DeviceTarget) {
-                    for deviceIndexer in nodeStyleRefIndexer[Elements.DeviceTarget] {
+                    for deviceIndexer in nodeStyleRefIndexer[Elements.DeviceTarget].all {
                         // Class
                         guard let deviceTargetClassString: String = try deviceIndexer[Elements.Class].value() else {
                             throw ManifestError.missingRequiredChildElement(name: Elements.Class, element: deviceIndexer.element)

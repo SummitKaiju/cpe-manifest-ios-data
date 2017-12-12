@@ -36,15 +36,15 @@ open class AppDataSet {
             throw ManifestError.missingRequiredChildElement(name: Elements.ManifestAppData, element: indexer.element)
         }
 
-        for indexer in indexer[Elements.ManifestAppData] {
-            if try indexer[Elements.NVPair].withAttr(Attributes.Name, Attributes.AppDataType)[Elements.Text].value() == AppDataType.product.rawValue {
+        for indexer in indexer[Elements.ManifestAppData].all {
+            if try indexer[Elements.NVPair].withAttribute(Attributes.Name, Attributes.AppDataType)[Elements.Text].value() == AppDataType.product.rawValue {
                 if products == nil {
                     products = [String: AppDataItemProduct]()
                 }
 
                 let product = try AppDataItemProduct(indexer: indexer)
                 products![product.id] = product
-            } else if try indexer[Elements.NVPair].withAttr(Attributes.Name, Attributes.AppDataType)[Elements.Text].value() == AppDataType.person.rawValue {
+            } else if try indexer[Elements.NVPair].withAttribute(Attributes.Name, Attributes.AppDataType)[Elements.Text].value() == AppDataType.person.rawValue {
                 if people == nil {
                     people = [String: AppDataItem]()
                 }

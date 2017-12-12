@@ -49,7 +49,7 @@ public class AppGroup: MetadataDriven, Trackable {
 
         interactiveTrackIDs = [String]()
 
-        for indexer in indexer[Elements.InteractiveTrackReference] {
+        for indexer in indexer[Elements.InteractiveTrackReference].all {
             // InteractiveTrackID
             guard let id: String = try indexer[Elements.InteractiveTrackID].value() else {
                 throw ManifestError.missingRequiredChildElement(name: Elements.InteractiveTrackID, element: indexer.element)

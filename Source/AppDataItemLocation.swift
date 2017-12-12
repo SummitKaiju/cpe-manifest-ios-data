@@ -43,7 +43,7 @@ open class AppDataItemLocation: AppDataItem {
     override init(indexer: XMLIndexer) throws {
         try super.init(indexer: indexer)
 
-        for indexer in indexer[Elements.NVPair] {
+        for indexer in indexer[Elements.NVPair].all {
             // Name
             guard let name: String = indexer.value(ofAttribute: Attributes.Name) else {
                 throw ManifestError.missingRequiredAttribute(Attributes.Name, element: indexer.element)

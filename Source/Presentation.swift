@@ -55,9 +55,9 @@ open class Presentation {
             throw ManifestError.missingRequiredChildElement(name: Elements.TrackMetadata, element: indexer.element)
         }
 
-        for indexer in indexer[Elements.TrackMetadata] {
+        for indexer in indexer[Elements.TrackMetadata].all {
             // VideoTrackReference
-            let videoIDs: [String] = try indexer[Elements.VideoTrackReference].flatMap({ try $0[Elements.VideoTrackID].value() })
+            let videoIDs: [String] = try indexer[Elements.VideoTrackReference].all.flatMap({ try $0[Elements.VideoTrackID].value() })
             if videoIDs.count > 0 {
                 if self.videoIDs == nil {
                     self.videoIDs = videoIDs
@@ -67,7 +67,7 @@ open class Presentation {
             }
 
             // AudioTrackReference
-            let audioIDs: [String] = try indexer[Elements.AudioTrackReference].flatMap({ try $0[Elements.AudioTrackID].value() })
+            let audioIDs: [String] = try indexer[Elements.AudioTrackReference].all.flatMap({ try $0[Elements.AudioTrackID].value() })
             if audioIDs.count > 0 {
                 if self.audioIDs == nil {
                     self.audioIDs = audioIDs

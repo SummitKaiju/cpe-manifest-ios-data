@@ -10,7 +10,7 @@ extension UIColor {
         var cString = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
         if cString.hasPrefix("#") {
-            cString = cString.substring(from: cString.characters.index(cString.startIndex, offsetBy: 1))
+            cString = String(cString[cString.index(cString.startIndex, offsetBy: 1)...])
         }
 
         var rgbValue: UInt32 = 0

@@ -154,7 +154,7 @@ open class MediaManifest {
             throw ManifestError.missingRequiredChildElement(name: Elements.Presentations, element: indexer.element)
         }
 
-        for indexer in indexer[Elements.Presentations][Elements.Presentation] {
+        for indexer in indexer[Elements.Presentations][Elements.Presentation].all {
             let presentation = try Presentation(indexer: indexer)
             presentations[presentation.id] = presentation
         }
@@ -162,7 +162,7 @@ open class MediaManifest {
         // PlayableSequences / PlayableSequence
         if indexer.hasElement(Elements.PlayableSequences) {
             var playableSequences = [String: PlayableSequence]()
-            for indexer in indexer[Elements.PlayableSequences][Elements.PlayableSequence] {
+            for indexer in indexer[Elements.PlayableSequences][Elements.PlayableSequence].all {
                 let playableSequence = try PlayableSequence(indexer: indexer)
                 playableSequences[playableSequence.id] = playableSequence
             }
@@ -173,7 +173,7 @@ open class MediaManifest {
         // PictureGroups / PictureGroup
         if indexer.hasElement(Elements.PictureGroups) {
             var pictureGroups = [String: PictureGroup]()
-            for indexer in indexer[Elements.PictureGroups][Elements.PictureGroup] {
+            for indexer in indexer[Elements.PictureGroups][Elements.PictureGroup].all {
                 let pictureGroup = try PictureGroup(indexer: indexer)
                 pictureGroups[pictureGroup.id!] = pictureGroup
             }
@@ -184,7 +184,7 @@ open class MediaManifest {
         // AppGroups / AppGroup
         if indexer.hasElement(Elements.AppGroups) {
             var appGroups = [String: AppGroup]()
-            for indexer in indexer[Elements.AppGroups][Elements.AppGroup] {
+            for indexer in indexer[Elements.AppGroups][Elements.AppGroup].all {
                 if let appGroup = try AppGroup(indexer: indexer) {
                     appGroups[appGroup.id] = appGroup
                 }
@@ -196,7 +196,7 @@ open class MediaManifest {
         // TextGroups / TextGroup
         if indexer.hasElement(Elements.TextGroups) {
             var textGroups = [String: TextGroup]()
-            for indexer in indexer[Elements.TextGroups][Elements.TextGroup] {
+            for indexer in indexer[Elements.TextGroups][Elements.TextGroup].all {
                 let textGroup = try TextGroup(indexer: indexer)
                 textGroups[textGroup.id] = textGroup
             }
@@ -209,7 +209,7 @@ open class MediaManifest {
             throw ManifestError.missingRequiredChildElement(name: Elements.Experiences, element: indexer.element)
         }
 
-        for indexer in indexer[Elements.Experiences][Elements.Experience] {
+        for indexer in indexer[Elements.Experiences][Elements.Experience].all {
             if let experience = try Experience(indexer: indexer) {
                 experiences[experience.id] = experience
             }
@@ -218,7 +218,7 @@ open class MediaManifest {
         // TimedEventSequences / TimedEventSequence
         if indexer.hasElement(Elements.TimedEventSequences) {
             var timedEventSequences = [String: TimedEventSequence]()
-            for indexer in indexer[Elements.TimedEventSequences][Elements.TimedEventSequence] {
+            for indexer in indexer[Elements.TimedEventSequences][Elements.TimedEventSequence].all {
                 let timedEventSequence = try TimedEventSequence(indexer: indexer)
                 timedEventSequences[timedEventSequence.id] = timedEventSequence
             }
@@ -231,7 +231,7 @@ open class MediaManifest {
         // Audio
         if indexer.hasElement(Elements.Audio) {
             var audios = [String: Audio]()
-            for indexer in indexer[Elements.Audio] {
+            for indexer in indexer[Elements.Audio].all {
                 if let audio = try Audio(indexer: indexer) {
                     audios[audio.id] = audio
                 }
@@ -243,7 +243,7 @@ open class MediaManifest {
         // Video
         if indexer.hasElement(Elements.Video) {
             var videos = [String: Video]()
-            for indexer in indexer[Elements.Video] {
+            for indexer in indexer[Elements.Video].all {
                 if let video = try Video(indexer: indexer) {
                     videos[video.id] = video
                 }
@@ -255,7 +255,7 @@ open class MediaManifest {
         // Image
         if indexer.hasElement(Elements.Image) {
             var images = [String: Image]()
-            for indexer in indexer[Elements.Image] {
+            for indexer in indexer[Elements.Image].all {
                 if let image = try Image(indexer: indexer) {
                     images[image.id] = image
                 }
@@ -267,7 +267,7 @@ open class MediaManifest {
         // Interactive
         if indexer.hasElement(Elements.Interactive) {
             var interactives = [String: Interactive]()
-            for indexer in indexer[Elements.Interactive] {
+            for indexer in indexer[Elements.Interactive].all {
                 if let interactive = try Interactive(indexer: indexer) {
                     interactives[interactive.id] = interactive
                 }
@@ -279,7 +279,7 @@ open class MediaManifest {
         // Metadata
         if indexer.hasElement(Elements.Metadata) {
             var metadatas = [String: Metadata]()
-            for indexer in indexer[Elements.Metadata] {
+            for indexer in indexer[Elements.Metadata].all {
                 let metadata = try Metadata(indexer: indexer)
                 metadatas[metadata.id] = metadata
             }
@@ -290,7 +290,7 @@ open class MediaManifest {
         // TextObject
         if indexer.hasElement(Elements.TextObject) {
             var textObjects = [String: TextObject]()
-            for indexer in indexer[Elements.TextObject] {
+            for indexer in indexer[Elements.TextObject].all {
                 let textObject = try TextObject(indexer: indexer)
                 textObjects[textObject.id] = textObject
             }

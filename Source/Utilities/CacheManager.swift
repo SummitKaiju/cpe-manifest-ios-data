@@ -31,7 +31,7 @@ open class CacheManager {
     }
 
     open static func fileName(for remoteURL: URL) -> String? {
-        if let fileName = remoteURL.path.characters.split(separator: "/").last {
+        if let fileName = remoteURL.path.split(separator: "/").last {
             return String(fileName)
         }
 

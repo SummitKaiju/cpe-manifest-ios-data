@@ -81,7 +81,7 @@ open class Theme {
             }
 
             var buttons = [String: ThemeButton]()
-            for indexer in indexer[Elements.ButtonImageSet][Elements.Button] {
+            for indexer in indexer[Elements.ButtonImageSet][Elements.Button].all {
                 let button: ThemeButton = try indexer.value()
                 buttons[button.label] = button
             }
