@@ -199,18 +199,20 @@ open class Metadata {
     /// Ordered list of `Person` objects associated with this metadata
     public var people: [Person]?
 
-    /// Look-up table of `Person` objects associated with this metadata
+    /// Look-up table of `Person` objects associated with this metadata by ID
     public lazy var personMapping: [String: Person]? = { [unowned self] in
-        if let people = self.people {
-            var personMapping = [String: Person]()
-            for person in people {
-                personMapping[person.id] = person
-            }
-
-            return personMapping
+        return self.people?.reduce(into: [String: Person]()) { dict, person in
+            dict[person.id] = person
         }
-
-        return nil
+    }()
+    
+    /// Look-up table of `Person` objects associated with this metadata by job function
+    public lazy var peopleByJobFunction: [PersonJobFunction: [Person]]? = { [unowned self] in
+        return self.people?.reduce(into: [PersonJobFunction: [Person]]()) { dict, person in
+            if let jobFunction = person.jobFunction {
+                dict[jobFunction, default: [Person]()].append(person)
+            }
+        }
     }()
 
     /// Metadata collection in the language marked as default
@@ -273,9 +275,7 @@ open class Metadata {
 
         // People
         if metadataIndexer.hasElement(Elements.People) {
-            people = try metadataIndexer[Elements.People].all.flatMap({ try Person(indexer: $0) }).sorted(by: { (person1, person2) -> Bool in
-                return person1.billingBlockOrder < person2.billingBlockOrder
-            })
+            people = try metadataIndexer[Elements.People].all.flatMap({ try Person(indexer: $0) }).sorted()
         }
     }
 
