@@ -16,7 +16,6 @@ extension String {
             var currentNumberString = ""
             var hours = 0.0, minutes = 0.0, seconds = 0.0
 
-            
             let timeString = String(self[self.index(self.startIndex, offsetBy: 2)...])
             for i in 0 ..< timeString.count {
                 if timeString[i] == "H", let numValue = Double(currentNumberString) {
