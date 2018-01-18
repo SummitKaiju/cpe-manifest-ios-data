@@ -43,6 +43,21 @@ public enum InteractiveRuntimeEnvironment: String {
     }
 }
 
+/**
+    Supported interactive environment attributes
+ 
+    - landscape: Webview locked to landscape
+    - portrait: Webview locked to portrait
+*/
+public enum InteractiveEnvironmentAttribute: String {
+    case landscape          = "landscape"
+    case portrait           = "portrait"
+    
+    static func build(rawValue: String) -> InteractiveEnvironmentAttribute? {
+        return (InteractiveEnvironmentAttribute(rawValue: rawValue) ?? InteractiveEnvironmentAttribute(rawValue: rawValue.lowercased()))
+    }
+}
+
 /// Encoding details of an interactive asset
 open class InteractiveEncoding: DigitalAssetEncoding {
 
