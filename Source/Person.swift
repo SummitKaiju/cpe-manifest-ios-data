@@ -123,6 +123,7 @@ open class Person: Trackable {
     public var jobs: [PersonJob]?
     public var name: String
     public var contentIdentifiers: [ContentIdentifier]?
+    public var biographyHeader: String?
     public var biography: String?
     public var pictureGroup: PictureGroup?
     public var socialAccounts: [SocialAccount]?
