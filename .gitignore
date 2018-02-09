@@ -13,3 +13,6 @@ Pods
 # Ruby Version Manager
 .ruby-*
 
+# Carthage
+Carthage
+Cartfile.resolved
