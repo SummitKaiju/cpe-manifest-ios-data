@@ -9,6 +9,7 @@ public struct AppDataNVPairName {
     // Global
     static let AppType = "type"
     static let Text = "text"
+    static let DescriptionHeader = "description_header"
     static let Description = "description"
     static let DisplayOrder = "display_order"
     static let ContentID = "content_id"
@@ -82,6 +83,8 @@ open class AppDataItem: Trackable {
 
         return metadata?.title
     }
+    
+    public var descriptionHeader: String?
 
     public var _description: String?
     open var description: String? {
@@ -168,6 +171,10 @@ open class AppDataItem: Trackable {
                 }
 
                 self.displayOrder = displayOrder
+                break
+                
+            case AppDataNVPairName.DescriptionHeader:
+                descriptionHeader = try indexer[Elements.Text].value()
                 break
 
             case AppDataNVPairName.Description:
