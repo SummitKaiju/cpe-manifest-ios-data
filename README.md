@@ -35,6 +35,15 @@ Then, run the following command:
 $ pod install
 ```
 
+### Carthage
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager for Cocoa applications.
+To integrate CPEData into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```
+github "warnerbros/cpe-manifest-ios-data" ~> 3.0
+```
+Then, add `CPEData.framework` and `SWXMLHash.framework` to "Linked Frameworks and Libraries" and Carthage's "copy-frameworks" script 
+
 ## Usage
 
 Use the static `load` functions in `CPEXMLSuite` for a convenient way to initialize and parse all the supported spec files.
