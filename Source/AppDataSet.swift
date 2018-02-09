@@ -83,6 +83,7 @@ open class AppDataSet {
             if let people = CPEXMLSuite.current?.manifest.people {
                 for person in people {
                     if let appDataID = person.appDataID, let appDataItem = appDataPeople[appDataID] {
+                        person.biographyHeader = appDataItem.descriptionHeader
                         person.biography = appDataItem.description
                         if let pictures = appDataItem.pictures {
                             person.pictureGroup = PictureGroup(pictures: pictures)

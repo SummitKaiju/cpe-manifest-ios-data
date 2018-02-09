@@ -114,6 +114,10 @@ open class MediaManifest {
             mainExperience.metadata?.people = newValue
         }
     }
+    
+    open var peopleByJobFunction: [PersonJobFunction: [Person]]? {
+        return mainExperience.metadata?.peopleByJobFunction
+    }
 
     deinit {
         // TimedEvent objects have back references to Experiences that create a retain cycle

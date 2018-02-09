@@ -64,6 +64,14 @@ public enum PersonJobFunction: String {
     }
 }
 
+extension PersonJobFunction: Comparable {
+    
+    public static func < (lhs: PersonJobFunction, rhs: PersonJobFunction) -> Bool {
+        return (lhs.rawValue < rhs.rawValue)
+    }
+    
+}
+
 public struct PersonJob {
 
     private struct Elements {
@@ -103,11 +111,7 @@ public struct PersonJob {
 
 }
 
-public func == (lhs: Person, rhs: Person) -> Bool {
-    return (lhs.id == rhs.id)
-}
-
-open class Person: Equatable, Trackable {
+open class Person: Trackable {
 
     private struct Elements {
         static let Job = "Job"
@@ -119,6 +123,7 @@ open class Person: Equatable, Trackable {
     public var jobs: [PersonJob]?
     public var name: String
     public var contentIdentifiers: [ContentIdentifier]?
+    public var biographyHeader: String?
     public var biography: String?
     public var pictureGroup: PictureGroup?
     public var socialAccounts: [SocialAccount]?
@@ -153,6 +158,10 @@ open class Person: Equatable, Trackable {
     open var character: String? {
         return jobs?.first?.characters?.first
     }
+    
+    open var jobFunction: PersonJobFunction? {
+        return jobs?.first?.function
+    }
 
     open var billingBlockOrder: Int {
         return (jobs?.first?.billingBlockOrder ?? 0)
@@ -167,11 +176,11 @@ open class Person: Equatable, Trackable {
     }
 
     open lazy var gallery: Gallery? = { [unowned self] in
-        if let pictureGroup = self.pictureGroup {
-            return Gallery(pictureGroup: pictureGroup)
+        guard let pictureGroup = self.pictureGroup else {
+            return nil
         }
 
-        return nil
+        return Gallery(pictureGroup: pictureGroup)
     }()
 
     public var detailsLoaded = false
@@ -225,4 +234,20 @@ open class Person: Equatable, Trackable {
         }
     }
 
+}
+
+extension Person: Equatable {
+    
+    public static func == (lhs: Person, rhs: Person) -> Bool {
+        return (lhs.id == rhs.id)
+    }
+    
+}
+
+extension Person: Comparable {
+    
+    public static func < (lhs: Person, rhs: Person) -> Bool {
+        return (lhs.billingBlockOrder < rhs.billingBlockOrder)
+    }
+    
 }
