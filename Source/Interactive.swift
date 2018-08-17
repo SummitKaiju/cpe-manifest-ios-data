@@ -29,6 +29,7 @@ public enum InteractiveType: String {
     - html: W3C HTML5
     - iOS: Apple iOS
     - defaultEnvironment: Represents an application that can be played if nothing else can. This is typically an image
+    - ath: Aether Inc. immersive 360° experience
     - other: May be used when there is not a type convention
  */
 public enum InteractiveRuntimeEnvironment: String {
@@ -36,6 +37,7 @@ public enum InteractiveRuntimeEnvironment: String {
     case html               = "html"
     case iOS                = "ios"
     case defaultEnvironment = "default"
+    case ath                = "ath"
     case other              = "other"
 
     static func build(rawValue: String) -> InteractiveRuntimeEnvironment? {
