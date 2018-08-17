@@ -14,5 +14,5 @@ Pods
 .ruby-*
 
 # Carthage
-Carthage
-Cartfile.resolved
+Carthage/Carthage/Build
+Carthage/Carthage/Checkouts
