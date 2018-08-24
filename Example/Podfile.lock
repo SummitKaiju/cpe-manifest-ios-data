@@ -1,5 +1,5 @@
 PODS:
-  - CPEData (3.2.0):
+  - CPEData (3.3.0):
     - SWXMLHash (~> 4.0)
   - REFormattedNumberField (1.1.6)
   - RETableViewManager (1.7):
@@ -24,7 +24,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CPEData: d4e28a4afc88b86317a75f85f31bc6482352662c
+  CPEData: 1937cf4b21fde3339f3bfc21bda3a5de02e83061
   REFormattedNumberField: 70fc5fb1218ebd5ee9983820defd12806d5c6ec6
   RETableViewManager: 0f24d796c42c0890d38c79cc9aeb3871e186726e
   REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
