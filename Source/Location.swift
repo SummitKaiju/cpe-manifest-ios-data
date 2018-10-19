@@ -84,7 +84,7 @@ open class Location {
      */
     open func mapImageURL(forZoomLevel zoomLevel: Int? = nil) -> URL? {
         if CPEXMLSuite.Settings.mapsAPIService == .googleMaps, let key = CPEXMLSuite.Settings.mapsAPIKey {
-            var urlString = "http://maps.googleapis.com/maps/api/staticmap?"
+            var urlString = "https://maps.googleapis.com/maps/api/staticmap?"
             urlString += "center=\(latitude),\(longitude)"
 
             if let zoomLevel = zoomLevel {
