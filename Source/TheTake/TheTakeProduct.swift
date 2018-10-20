@@ -36,7 +36,7 @@ public class TheTakeProductCategory: ProductCategory {
 public class TheTakeProduct: ProductItem {
 
     private struct Constants {
-        static let ProductURLPrefix = "http://www.thetake.com/product/"
+        static let ProductURLPrefix = "https://thetake.com/product/"
 
         struct Keys {
             static let ProductId = "productId"
