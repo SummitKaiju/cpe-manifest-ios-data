@@ -98,7 +98,7 @@ open class AppDataItem: Trackable {
     public var pictureIDs: [String]?
     open var pictures: [Picture]? {
         if let pictureIDs = pictureIDs {
-            return pictureIDs.flatMap({ CPEXMLSuite.current?.manifest.pictureWithID($0) })
+            return pictureIDs.compactMap({ CPEXMLSuite.current?.manifest.pictureWithID($0) })
         }
 
         return nil

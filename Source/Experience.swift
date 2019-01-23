@@ -219,13 +219,13 @@ open class Experience: MetadataDriven, Equatable, Trackable {
         // Region / ExcludedRegion
         if let regionCode = CPEXMLSuite.Settings.countryCode {
             if indexer.hasElement(Elements.Region) {
-                let supportedRegions: [String] = try indexer[Elements.Region].all.flatMap({ try $0[Elements.Country].value() })
+                let supportedRegions: [String] = try indexer[Elements.Region].all.compactMap({ try $0[Elements.Country].value() })
                 if !supportedRegions.contains(regionCode) {
                     print("Ignoring unsupported Experience object with ID \(id) and Regions \"\(supportedRegions.joined(separator: ", "))\"")
                     return nil
                 }
             } else if indexer.hasElement(Elements.ExcludedRegion) {
-                let unsupportedRegions: [String] = try indexer[Elements.ExcludedRegion].all.flatMap({ try $0[Elements.Country].value() })
+                let unsupportedRegions: [String] = try indexer[Elements.ExcludedRegion].all.compactMap({ try $0[Elements.Country].value() })
                 if unsupportedRegions.contains(regionCode) {
                     print("Ignoring unsupported Experience object with ID \(id) and ExcludedRegions \"\(unsupportedRegions.joined(separator: ", "))\"")
                     return nil
@@ -341,7 +341,7 @@ open class Experience: MetadataDriven, Equatable, Trackable {
             }
         }
 
-        let isLandscape = UIInterfaceOrientationIsLandscape(interfaceOrientation)
+        let isLandscape = interfaceOrientation.isLandscape
         if UIDevice.current.userInterfaceIdiom == .pad {
             return (isLandscape ? (tabletLandscapeNodeStyle ?? tabletPortraitNodeStyle) : (tabletPortraitNodeStyle ?? tabletLandscapeNodeStyle))
         }

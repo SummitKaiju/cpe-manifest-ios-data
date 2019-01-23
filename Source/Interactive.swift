@@ -152,7 +152,7 @@ open class Interactive: DigitalAsset {
             throw ManifestError.missingRequiredChildElement(name: Elements.Encoding, element: indexer.element)
         }
 
-        encodings = try indexer[Elements.Encoding].all.flatMap({ try InteractiveEncoding(indexer: $0) })
+        encodings = try indexer[Elements.Encoding].all.compactMap({ try InteractiveEncoding(indexer: $0) })
 
         try super.init(indexer: indexer)
     }

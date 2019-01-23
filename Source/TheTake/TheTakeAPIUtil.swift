@@ -56,7 +56,7 @@ public class TheTakeAPIUtil: APIUtil, ProductAPIUtil {
         if let apiID = featureAPIID {
             return getJSONWithPath("/frames/listFrames", parameters: ["media": apiID, "start": "0", "limit": "10000"], successBlock: { (result) -> Void in
                 if let frames = result["result"] as? [NSDictionary] {
-                    completion(frames.flatMap({ $0["frameTime"] as? Double }))
+                    completion(frames.compactMap({ $0["frameTime"] as? Double }))
                 } else {
                     completion(nil)
                 }
@@ -79,7 +79,7 @@ public class TheTakeAPIUtil: APIUtil, ProductAPIUtil {
             productCategories = [TheTakeProductCategory]()
             return getJSONWithPath("/categories/listProductCategories", parameters: ["media": apiID], successBlock: { [weak self] (result) in
                 if let categories = result["result"] as? [NSDictionary] {
-                    self?.productCategories = categories.flatMap({ TheTakeProductCategory(data: $0) })
+                    self?.productCategories = categories.compactMap({ TheTakeProductCategory(data: $0) })
                 }
 
                 completion?(self?.productCategories)

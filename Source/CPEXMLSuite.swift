@@ -80,7 +80,7 @@ open class CPEXMLSuite {
     }
 
     /// Reference to the currently presented XML suite
-    open static var current: CPEXMLSuite?
+    public static var current: CPEXMLSuite?
 
     private static func requestXMLData(url: URL, timeoutInterval: TimeInterval = 5, completionHandler: @escaping (Data?, Error?) -> Void) -> URLSessionDownloadTask? {
         // Check if cached version of this file exists
@@ -104,7 +104,7 @@ open class CPEXMLSuite {
         return CacheManager.tempFileDownloadTask(url: url, timeoutInterval: timeoutInterval, completionHandler: completionHandler)
     }
 
-    open static func load(manifestXMLURL: URL, appDataXMLURL: URL? = nil, cpeStyleXMLURL: URL? = nil, singleTimeoutInterval: TimeInterval = 5, completionHandler: @escaping (_ error: Error?) -> Void) {
+    public static func load(manifestXMLURL: URL, appDataXMLURL: URL? = nil, cpeStyleXMLURL: URL? = nil, singleTimeoutInterval: TimeInterval = 5, completionHandler: @escaping (_ error: Error?) -> Void) {
         var fetchedManifest = false
         var fetchedAppData = false
         var fetchedCPEStlye = false
@@ -195,7 +195,7 @@ open class CPEXMLSuite {
         }
     }
 
-    open static func load(manifestXMLPath: String, appDataXMLPath: String? = nil, cpeStyleXMLPath: String? = nil, completionHandler: (_ error: Error?) -> Void) throws {
+    public static func load(manifestXMLPath: String, appDataXMLPath: String? = nil, cpeStyleXMLPath: String? = nil, completionHandler: (_ error: Error?) -> Void) throws {
         current = nil
 
         do {
@@ -221,7 +221,7 @@ open class CPEXMLSuite {
         }
     }
 
-    open static func load(manifestXMLData: Data, appDataXMLData: Data?, cpeStyleXMLData: Data? = nil) throws {
+    public static func load(manifestXMLData: Data, appDataXMLData: Data?, cpeStyleXMLData: Data? = nil) throws {
         // Manifest
         let manifestIndexer = SWXMLHash.config { conf in
             conf.shouldProcessNamespaces = true

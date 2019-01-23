@@ -23,7 +23,7 @@ open class PlayableSequence {
     public var presentationIDs: [String]
 
     open lazy var presentations: [Presentation] = { [unowned self] in
-        return self.presentationIDs.flatMap({ CPEXMLSuite.current?.manifest.presentationWithID($0) })
+        return self.presentationIDs.compactMap({ CPEXMLSuite.current?.manifest.presentationWithID($0) })
     }()
 
     init(indexer: XMLIndexer) throws {
@@ -39,7 +39,7 @@ open class PlayableSequence {
             throw ManifestError.missingRequiredChildElement(name: Elements.Clip, element: indexer.element)
         }
 
-        presentationIDs = try indexer[Elements.Clip].all.flatMap({ try $0[Elements.PresentationID].value() })
+        presentationIDs = try indexer[Elements.Clip].all.compactMap({ try $0[Elements.PresentationID].value() })
     }
 
 }

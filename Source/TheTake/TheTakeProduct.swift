@@ -27,7 +27,7 @@ public class TheTakeProductCategory: ProductCategory {
         self.name = name
 
         if let childCategories = data[Keys.ChildCategories] as? [NSDictionary] {
-            self.childCategories = childCategories.flatMap({ return TheTakeProductCategory(data: $0) })
+            self.childCategories = childCategories.compactMap({ return TheTakeProductCategory(data: $0) })
         }
     }
 

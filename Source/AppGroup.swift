@@ -20,7 +20,7 @@ open class InteractiveTrackReference {
     
     /// List of child `Interactive` elements
     open lazy var interactives: [Interactive] = { [unowned self] in
-        return self.interactiveTrackIDs.flatMap({ CPEXMLSuite.current?.manifest.interactiveWithID($0) })
+        return self.interactiveTrackIDs.compactMap({ CPEXMLSuite.current?.manifest.interactiveWithID($0) })
     }()
     
     /// Attributes with which the interactive asset should be launched, namely the supported orientations
@@ -57,7 +57,7 @@ open class InteractiveTrackReference {
         }
         
         // EnvironmentAttribute
-        environmentAttributes = try indexer[Elements.Compatibility][Elements.EnvironmentAttribute].all.flatMap({ try InteractiveEnvironmentAttribute.build(rawValue: $0.value()) })
+        environmentAttributes = try indexer[Elements.Compatibility][Elements.EnvironmentAttribute].all.compactMap({ try InteractiveEnvironmentAttribute.build(rawValue: $0.value()) })
     }
     
 }
@@ -125,7 +125,7 @@ public class AppGroup: MetadataDriven, Trackable {
             throw ManifestError.missingRequiredChildElement(name: Elements.InteractiveTrackReference, element: indexer.element)
         }
         
-        interactiveTrackReferences = try indexer[Elements.InteractiveTrackReference].all.flatMap({ try InteractiveTrackReference(indexer: $0) })
+        interactiveTrackReferences = try indexer[Elements.InteractiveTrackReference].all.compactMap({ try InteractiveTrackReference(indexer: $0) })
 
         // MetadataDriven
         try super.init(indexer: indexer)

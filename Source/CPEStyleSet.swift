@@ -155,7 +155,7 @@ open class CPEStyleSet {
                 }
             }
 
-            let isLandscape = UIInterfaceOrientationIsLandscape(interfaceOrientation)
+            let isLandscape = interfaceOrientation.isLandscape
             if UIDevice.current.userInterfaceIdiom == .pad {
                 return (isLandscape ? (tabletLandscapeNodeStyle ?? tabletPortraitNodeStyle) : (tabletPortraitNodeStyle ?? tabletLandscapeNodeStyle))
             }

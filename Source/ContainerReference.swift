@@ -62,7 +62,7 @@ public class ContainerReference {
                 }
             }
 
-            self.locations = locations.flatMap { $0 }
+            self.locations = locations.compactMap { $0 }
         }
 
         // ParentContainer

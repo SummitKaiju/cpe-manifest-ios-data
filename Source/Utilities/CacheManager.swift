@@ -10,7 +10,7 @@ open class CacheManager {
         static let CacheParentDirectory = "CacheParentDirectory"
     }
 
-    open static var tempDirectoryURL: URL? {
+    public static var tempDirectoryURL: URL? {
         let directoryURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(Constants.CacheParentDirectory, isDirectory: true)
 
         var isDirectory: ObjCBool = false
@@ -30,7 +30,7 @@ open class CacheManager {
         return directoryURL
     }
 
-    open static func fileName(for remoteURL: URL) -> String? {
+    public static func fileName(for remoteURL: URL) -> String? {
         if let fileName = remoteURL.path.split(separator: "/").last {
             return String(fileName)
         }
@@ -38,7 +38,7 @@ open class CacheManager {
         return nil
     }
 
-    open static func tempFileURL(for url: URL) -> URL? {
+    public static func tempFileURL(for url: URL) -> URL? {
         if let fileName = fileName(for: url) {
             return tempDirectoryURL?.appendingPathComponent(fileName)
         }
@@ -46,11 +46,11 @@ open class CacheManager {
         return nil
     }
 
-    open static func fileExists(_ fileURL: URL) -> Bool {
+    public static func fileExists(_ fileURL: URL) -> Bool {
         return FileManager.default.fileExists(atPath: fileURL.path)
     }
 
-    open static func tempFileDownloadTask(url: URL, timeoutInterval: TimeInterval = 5, completionHandler: ((Data?, Error?) -> Void)? = nil) -> URLSessionDownloadTask {
+    public static func tempFileDownloadTask(url: URL, timeoutInterval: TimeInterval = 5, completionHandler: ((Data?, Error?) -> Void)? = nil) -> URLSessionDownloadTask {
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: timeoutInterval)
         request.addValue("gzip", forHTTPHeaderField: "Accept-Encoding")
         let downloadTask = URLSession.shared.downloadTask(with: request, completionHandler: { (location, _, error) in
@@ -89,7 +89,7 @@ open class CacheManager {
         return downloadTask
     }
 
-    open static func clearTempDirectory() {
+    public static func clearTempDirectory() {
         if let tempDirectoryURL = tempDirectoryURL {
             do {
                 try FileManager.default.removeItem(at: tempDirectoryURL)
